@@ -61,7 +61,7 @@ const DevConDashboard = () => {
         
       </div>
 
-      {/* Activity Chart */}
+      {/* ActivityChart */}
       <div className="bg-black backdrop-blur-sm p-2 mt-1 mb-1 border-8 border-gray-500">
         <div className="text-[9px] text-pink-400 mb-1">
           ▸ IT ASSET FOUND/BOTNET/MALWARE CHANNEL
