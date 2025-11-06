@@ -44,9 +44,9 @@ const DevConDashboard = () => {
   };
 
   return (
-    <div className="w-72 h-[100vh] bg-black p-3 rounded-lg shadow-2xl flex flex-col justify-between overflow-hidden">
+    <div className="w-72 h-[100vh] bg-black p-3 rounded-2xl shadow-2xl flex flex-col justify-between overflow-hidden">
       {/* DEFCON Status */}
-      <div className="bg-black backdrop-blur-sm rounded-lg p-3 border-8 border-gray-600 flex flex-col items-center">
+      <div className="bg-black backdrop-blur-sm rounded-lg p-3 border-8 border-gray-500 flex flex-col items-center">
         <div className="text-[20px] text-white font-bold mb-2 tracking-widest ">
           DEFCON
         </div>
@@ -58,18 +58,11 @@ const DevConDashboard = () => {
           </div>
           <div className="absolute -inset-1 rounded-full border-4 border-green-400/30 animate-pulse"></div>
         </div>
-        <div className="space-y-1 w-full">
-          {[1, 2, 3, 4, 5].map((level) => (
-            <div
-              key={level}
-              className="w-full h-1.5 rounded-full bg-green-500"
-            ></div>
-          ))}
-        </div>
+        
       </div>
 
       {/* Activity Chart */}
-      <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-2 border border-pink-500/30">
+      <div className="bg-black backdrop-blur-sm p-2 mt-1 mb-1 border-8 border-gray-500">
         <div className="text-[9px] text-pink-400 mb-1">
           ▸ IT ASSET FOUND/BOTNET/MALWARE CHANNEL
         </div>
@@ -92,7 +85,7 @@ const DevConDashboard = () => {
       </div>
 
       {/* Pie Chart */}
-      <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-2 border border-purple-500/30 flex-1 flex flex-col justify-center">
+      <div className="bg-black backdrop-blur-sm p-2 border-8 border-gray-500 flex-1 flex flex-col justify-center">
         <div className="text-[9px] text-purple-400 mb-1">
           THREAT DISTRIBUTION
         </div>
@@ -117,15 +110,15 @@ const DevConDashboard = () => {
       </div>
 
       {/* Threat Alert List */}
-      <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-2 border border-yellow-500/30">
-        <div className="text-[10px] text-white mb-1 flex items-center gap-1.5 justify-center font-bold">
+      <div className="bg-black backdrop-blur-sm rounded-2xl p-2 mt-1 mb-1 border-8 border-gray-500">
+        <div className="text-[10px] mb-2 text-white flex items-center gap-1.5 justify-center font-bold">
           THREAT ALERT LIST
         </div>
         <div className="space-y-1">
           {threats.map((threat, idx) => (
             <div
               key={idx}
-              className={`${threat.color} text-gray-900 p-1 rounded text-[8px] font-semibold`}
+              className={`${threat.color} text-gray-900 p-1 text-[8px] font-semibold`}
             >
               <div>{threat.id}</div>
               <div className="text-[7px] font-mono">{threat.code}</div>

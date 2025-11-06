@@ -57,7 +57,7 @@ const formatTime: DateFormatter = (date: Date): string => {
       </div>
 
       {/* World Map */}
-      <div className="bg-black rounded-lg p-0.5 mb-2 border-8 border-gray-600">
+      <div className="bg-black rounded-lg p-0.5 mb-2 border-8 border-gray-500">
         <div className="bg-slate-700 rounded p-1 relative">
           <svg viewBox="0 0 200 100" className="w-full h-16">
             {/* Simple world map outline */}
@@ -77,7 +77,7 @@ const formatTime: DateFormatter = (date: Date): string => {
       </div>
 
       {/* Overlay List */}
-      <div className="bg-black rounded-lg p-2 mb-2 border-8 border-gray-600 flex-shrink-0">
+      <div className="bg-black rounded-lg p-2 mb-2 border-8 border-gray-500 flex-shrink-0">
         <div className="text-[15px] font-bold mb-1.5 text-white border-b border-gray-600 pb-1 flex justify-center">OVERLAY LIST</div>
         <div className="space-y-1">
           {overlayItems.map((item, idx) => (
@@ -107,7 +107,7 @@ const formatTime: DateFormatter = (date: Date): string => {
       </div>
 
       {/* SITREP */}
-      <div className="bg-black rounded-lg p-2 border-8 border-gray-600 flex-1 overflow-hidden">
+      <div className="bg-black rounded-lg p-2 border-8 border-gray-500 flex-1 overflow-hidden">
         <div className="text-[15px] font-bold mb-1.5 text-white border-b border-black pb-2 flex justify-center ">SITREP</div>
         
         <div className="bg-cyan-50 rounded p-2 space-y-1.5 text-[15px] h-full overflow-y-auto">
