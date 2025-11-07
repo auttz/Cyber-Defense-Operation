@@ -3,7 +3,6 @@ import { AlertTriangle } from "lucide-react";
 
 const DevConDashboard = () => {
   const [defconLevel] = useState(1);
-
   const threats = [
     { id: "THREAT 5", code: "8281034OCT24", color: "bg-yellow-300" },
     { id: "THREAT 4", code: "2809420CT24", color: "bg-yellow-300" },
@@ -72,7 +71,7 @@ const DevConDashboard = () => {
           {/* 🔸 วงกลม Defcon Level */}
           <div className="relative">
             <div className="w-28 h-28 rounded-full border-8 border-green-500 flex items-center justify-center bg-black shadow-[0_0_15px_rgba(0,255,0,0.3)]">
-              <span className="text-7xl font-bold text-green-400">
+              <span className="text-8xl font-bold text-green-400">
                 {defconLevel}
               </span>
             </div>
