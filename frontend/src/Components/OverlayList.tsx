@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Globe, Check } from 'lucide-react';
 
-const LeftSidebar = () => {
+const OverlayList = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   
   useEffect(() => {
@@ -38,26 +38,25 @@ const formatTime: DateFormatter = (date: Date): string => {
   ];
 
   return (
-    <div className="fixed left-0 top-0 h-screen w-72 bg-black text-white p-2 border-r-2 border-black flex flex-col">
+    <div className="fixed left-0 top-0 h-screen w-60 bg-black text-white p-2 border-r-2 border-black flex flex-col">
       
       {/* Logo and DateTime */}
       <div className="bg-black rounded-lg p-2 mb-2 border border-black">
         <div className="flex justify-center mb-1">
-          <div className="w-20 h-12 flex items-center justify-center">
-            <div className="text-center">
+          <div className="w-30 h-12 flex items-center justify-center">
+            <div className="text-center mt-6">
                 <img src="img/rtarf.png" alt=""/>
-
             </div>
           </div>
         </div>
-        <div className="text-center">
+        <div className="text-center mt-8">
           <div className="text-[15px] text-gray-300 font-bold">{formatDate(currentTime)}</div>
           <div className="text-sm font-mono font-bold text-white">{formatTime(currentTime)}</div>
         </div>
       </div>
 
       {/* World Map */}
-      <div className="bg-black rounded-lg p-0.5 mb-2 border-8 border-gray-500">
+      <div className="bg-black rounded-lg p-0.5 mb-1 border-8 border-gray-500 w-57">
         <div className="bg-slate-700 rounded p-1 relative">
           <svg viewBox="0 0 200 100" className="w-full h-16">
             {/* Simple world map outline */}
@@ -77,7 +76,7 @@ const formatTime: DateFormatter = (date: Date): string => {
       </div>
 
       {/* Overlay List */}
-      <div className="bg-black rounded-lg p-2 mb-2 border-8 border-gray-500 flex-shrink-0">
+      <div className="bg-black rounded-lg p-2 mb-1 border-8 border-gray-500 flex-shrink-0 w-57">
         <div className="text-[15px] font-bold mb-1.5 text-white border-b border-gray-600 pb-1 flex justify-center">OVERLAY LIST</div>
         <div className="space-y-1">
           {overlayItems.map((item, idx) => (
@@ -107,7 +106,7 @@ const formatTime: DateFormatter = (date: Date): string => {
       </div>
 
       {/* SITREP */}
-      <div className="bg-black rounded-lg p-2 border-8 border-gray-500 flex-1 overflow-hidden">
+      <div className="bg-black rounded-lg p-2 border-8 border-gray-500 flex-1 overflow-hidden w-57">
         <div className="text-[15px] font-bold mb-1.5 text-white border-b border-black pb-2 flex justify-center ">SITREP</div>
         
         <div className="bg-cyan-50 rounded p-2 space-y-1.5 text-[15px] h-full overflow-y-auto">
@@ -154,4 +153,4 @@ const formatTime: DateFormatter = (date: Date): string => {
   );
 };
 
-export default LeftSidebar;
+export default OverlayList;

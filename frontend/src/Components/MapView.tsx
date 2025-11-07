@@ -1,28 +1,82 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import React from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Polyline,
+  Popup,
+} from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import "../index.css";
 
-// 🔧 ปรับ icon เอง (เพราะ default icon อาจไม่แสดงในบาง environment)
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+// ไอคอน threat สีแดง/เหลือง
+const redIcon = new L.Icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/565/565547.png",
+  iconSize: [24, 24],
+});
+
+const yellowIcon = new L.Icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/190/190411.png",
+  iconSize: [24, 24],
 });
 
 const MapView = () => {
-  const position: [number, number] = [13.7563, 100.5018]; 
+  // พิกัดตัวอย่าง threat (กรุงเทพ, เชียงใหม่, สงขลา, โคราช, ขอนแก่น)
+  const threats: { name: string; coords: [number, number]; color: string }[] = [
+    { name: "THREAT 1", coords: [13.7563, 100.5018], color: "red" }, // กรุงเทพ
+    { name: "THREAT 2", coords: [18.7883, 98.9853], color: "yellow" }, // เชียงใหม่
+    { name: "THREAT 3", coords: [7.0096, 100.4762], color: "yellow" }, // สงขลา
+    { name: "THREAT 4", coords: [14.9799, 102.0977], color: "yellow" }, // โคราช
+    { name: "THREAT 5", coords: [16.4419, 102.835], color: "yellow" }, // ขอนแก่น
+  ];
+
+  // เส้นเชื่อม (polyline)
+  const connections = [
+    [threats[0].coords, threats[1].coords],
+    [threats[0].coords, threats[3].coords],
+    [threats[3].coords, threats[4].coords],
+    [threats[0].coords, threats[2].coords],
+  ];
 
   return (
-    <MapContainer center={position} zoom={12} style={{ height: "100vh", width: "100%" }}>
+    <MapContainer
+      center={[15.87, 100.9925]} // Thailand center
+      zoom={6}
+      className="w-full h-full rounded-lg"
+      style={{ backgroundColor: "black" }}
+    >
+      {/* 🌊 พื้นหลังกรมท่าเข้ม */}
       <TileLayer
-        attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution="&copy; OpenStreetMap & CartoDB"
+        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       />
-      <Marker position={position}>
-        <Popup>📍 กรุงเทพฯ</Popup>
-      </Marker>
+      <TileLayer
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}"
+        opacity={0.1}
+      />
+      
+      <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}" />
+
+      {/* 🔴 วาง Threat จุดต่าง ๆ */}
+      {threats.map((t, idx) => (
+        <Marker
+          key={idx}
+          position={t.coords}
+          icon={t.color === "red" ? redIcon : yellowIcon}
+        >
+          <Popup>{t.name}</Popup>
+        </Marker>
+      ))}
+
+      {/* 🔵 วาดเส้นเชื่อมโยง */}
+      {connections.map((line, idx) => (
+        <Polyline
+          key={idx}
+          positions={line}
+          pathOptions={{ color: "#00ffff", weight: 2 }}
+        />
+      ))}
     </MapContainer>
   );
 };
